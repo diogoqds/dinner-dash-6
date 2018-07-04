@@ -4,7 +4,7 @@
     <br>
     <%= link_to 'Meus Dados', user_path(current_user.id) %>
     <br>
-    <%= link_to 'Sair', destroy_user_session_path, :method => 'delete' %>
+    <%= link_to 'Sair', destroy_user_session_path, method: 'delete' %>
 <% else %>
     <p> Seja bem vindo!</p>
     <br>
