@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 
   #Refeicoes
   get '/meals', to: 'meals#index'
+  get '/meals/new', to: 'meals#new'
+
+  #Categorias
+  get '/categories', to: 'categories#index'
+  get '/categories/new', to: 'categories#new'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
