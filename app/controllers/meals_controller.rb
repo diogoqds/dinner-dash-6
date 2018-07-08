@@ -8,6 +8,12 @@ class MealsController < ApplicationController
     end
 
     def create
+        @meal = Meal.new(meal_params)
+        if @meal.save
+            redirect_to meals_path
+        else
+            render :new
+        end
     end
 
     private

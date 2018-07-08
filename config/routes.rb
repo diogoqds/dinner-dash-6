@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   #Refeicoes
   get '/meals', to: 'meals#index'
   get '/meals/new', to: 'meals#new'
+  post '/meals', to: 'meals#create'
 
   #Categorias
   get '/categories', to: 'categories#index'
   get '/categories/new', to: 'categories#new'
+  post '/categories', to: 'categories#create'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
