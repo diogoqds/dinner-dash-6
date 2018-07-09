@@ -1,4 +1,6 @@
 class MealsController < ApplicationController
+    before_action :authenticate_user!
+    before_action :is_admin?
 
     def index
         @meals = Meal.all
