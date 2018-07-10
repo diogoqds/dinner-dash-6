@@ -1,14 +1,5 @@
-<h1>Home</h1>
 <% if user_signed_in? %>
-    <p> Seja bem vindo, <%= current_user.display_name %> ! </p>
-    <br>
-    <%= link_to 'Meus Dados', user_path(current_user.id) %>
-    <br>
-    <%= link_to 'Sair', destroy_user_session_path, method: 'delete' %>
+    <%= render 'auth_user' %>
 <% else %>
-    <p> Seja bem vindo!</p>
-    <br>
-    <%= link_to 'Cadastrar', new_user_registration_path %>
-    <br>
-    <%= link_to 'Entrar na conta' ,user_session_path %>
+    <%= render 'unauth_user' %>
 <% end %>
