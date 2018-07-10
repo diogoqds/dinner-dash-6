@@ -1,39 +1,48 @@
-<h2>Cadastrar</h2>
+<div class="auth_background">
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-  
-  <div class="field">
-    <%= f.label :nome_exibido %><br />
-    <%= f.text_field :display_name, autofocus: true, autocomplete: "off" %>
-  </div>
 
-  <div class="field">
+</div>
+<div class="auth_form">
+  <h2 class="dinnerdash_title">dinnerdash</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= devise_error_messages! %>
+    
+    <div class="form-group">
+    <%= f.label :nome_exibido  %><br />
+    <%= f.text_field :display_name, autofocus: true, autocomplete: "off", class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
     <%= f.label :nome_completo %><br />
-    <%= f.text_field :full_name, autofocus: true, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
+    <%= f.text_field :full_name, autofocus: true, autocomplete: "off", class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :senha %>
-    <% if @minimum_password_length %>
-    <em>(Ao menos <%= @minimum_password_length %> caracteres)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+    <%= f.label :senha %><br />
+    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+    <small id="passwordHelpBlock" class="form-text text-muted">
+      <% if @minimum_password_length %>
+        <em>Sua senha precisa ter ao menos <%= @minimum_password_length %> caracteres.</em>
+      <% end %>
+    </small>
+    </div>
+    
+    <div class="form-group">
     <%= f.label :confirme_a_senha %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+    </div>
+    
+    <div class="actions">
+    <%= f.submit "Cadastrar", class: 'btn btn-success' %>
+    </div>
+    <% end %>
+    <hr>
+    <p>Já possui conta?</p>
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Cadastrar" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

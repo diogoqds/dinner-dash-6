@@ -11,4 +11,73 @@
  * It is generally better to create a new file per style scope.
  *
  */
+@import "normalize.css";
 @import "bootstrap";
+/*------------------------------------------------------------------------*/
+/* Definitions for the Amaranth font family, used in the dinnerdash logo */
+@font-face {
+    font-family: 'Amaranth';
+    src:font-url('Amaranth-Regular.ttf');
+    font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+    font-family: 'Amaranth';
+    src:font-url('Amaranth-Bold.ttf');
+    font-weight: bold;
+	font-style: normal;
+}
+/*------------------------------------------------------------------------*/
+/*Definitions for the Circular-Std font family*/
+@font-face {
+    font-family: 'CircularStd';
+    src:font-url('CircularStd-Book.otf');
+    font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+    font-family: 'CircularStd';
+    src:font-url('CircularStd-Bold.otf');
+    font-weight: bold;
+	font-style: normal;
+}
+/*------------------------------------------------------------------------*/
+/* base */
+html, body { height: 100%; width: 100%; margin: 0; font-family: 'CircularStd'}
+/*------------------------------------------------------------------------*/
+/* authentication */
+.auth_background{
+    background-image: url('/assets/sabri-tuzcu-365440.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    background-color:lightyellow;
+    height:100%;
+    width:70%;
+
+float: left;
+}
+
+.auth_form{
+    padding: 3em;
+    text-align: left;
+    float: right;
+    width: 30%;
+    height: 100%;
+    background-color: white;
+}
+/*------------------------------------------------------------------------*/
+/* dinnerdash title */
+.dinnerdash_title{
+    font-family: 'Amaranth';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    color: #333333;
+    opacity: 85%;
+}
+/*------------------------------------------------------------------------*/
+/* landing page */
+#landing_choice{
+    text-align: center;
+}
