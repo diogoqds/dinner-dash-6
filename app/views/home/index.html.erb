@@ -1,19 +1,5 @@
 <% if user_signed_in? %>
-    <p> Seja bem vindo, <%= current_user.display_name %> ! </p>
-    <br>
-    <%= link_to 'Meus Dados', user_path(current_user.id) %>
-    <br>
-    <%= link_to 'Sair', destroy_user_session_path, method: 'delete' %>
+    <%= render 'auth_user' %>
 <% else %>
-<div class="auth_background">
-
-
-</div>
-<div class="auth_form" id="landing_choice">
-    <h2 class="dinnerdash_title"> dinnerdash</h2>
-    <hr>
-    <%= link_to 'Cadastrar', new_user_registration_path, class: 'btn btn-success' %>
-    
-    <%= link_to 'Entrar na conta' ,user_session_path, class: 'btn btn-success' %>
+    <%= render 'unauth_user' %>
 <% end %>
-</div>
