@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_11_222021) do
+ActiveRecord::Schema.define(version: 2018_07_12_002107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 2018_07_11_222021) do
     t.decimal "price", precision: 5, scale: 2
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "availabel"
+    t.boolean "available"
     t.index ["category_id"], name: "index_meals_on_category_id"
   end
 
