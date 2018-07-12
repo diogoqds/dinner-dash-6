@@ -12,6 +12,13 @@
         <p>
             Categoria: <%= meal.category.name %>
             <br>
+            Disponibilidade:
+            <% if meal.available %>
+                <font color='DarkGreen'>Disponível</font>
+            <% else %>
+                <font color='DarkRed'>Indisponível</font>
+            <% end %>
+            <br>
             Descrição: <%= meal.description %>
         </p>
         <% if meal.image.attached? %>
