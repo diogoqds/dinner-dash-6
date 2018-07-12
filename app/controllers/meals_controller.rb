@@ -3,7 +3,7 @@ class MealsController < ApplicationController
     before_action :is_admin?
 
     def index
-        @meals = Meal.all
+        @meals = Meal.order(:name)
     end
 
     def new

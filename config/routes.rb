@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/users/:id', to: 'users#show', as: 'user'
   get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
   patch '/users/:id', to: 'users#update'
+  get '/backoffice', to: 'users#backoffice', as: 'backoffice'
 
   #Refeicoes
   get '/meals', to: 'meals#index'

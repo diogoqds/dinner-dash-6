@@ -1,0 +1,18 @@
+<head>
+    <meta charset='UTF-8'>
+</head>
+<body>
+    <h1> Usuários </h1>
+    <% @users.each do |user| %>
+        <h5>
+            <b>Nome Social:</b> <%= user.display_name %>
+            <br>
+            <b>Nome de Registro:</b> <%= user.full_name %>
+            <br>
+            <b>Email:</b> <%= user.email %>
+            <br>
+        </h5>
+        <br>
+    <% end %>
+    <%= link_to 'Voltar', backoffice_path, class: 'btn btn-primary' %>
+</body>
