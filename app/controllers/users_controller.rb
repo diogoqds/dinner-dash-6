@@ -1,7 +1,9 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
+    before_action :is_admin?, only: [:index, :backoffice]
 
     def index
+        @users = User.order(:display_name)
     end
 
     def show
@@ -18,6 +20,9 @@ class UsersController < ApplicationController
         else
             render :edit
         end
+    end
+
+    def backoffice
     end
 
     private

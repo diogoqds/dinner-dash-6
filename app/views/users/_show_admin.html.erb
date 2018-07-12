@@ -1,5 +1,5 @@
 <head>
-    <meta charset='UTF-8'>   
+    <meta charset='UTF-8'>
 </head>
 <body>
     <h1>Bem vindo, <%= current_user.display_name %>!</h1>
@@ -12,8 +12,7 @@
     <p><%= current_user.email %></p>
     <br>
     <div class='form-group'>
-        <%= link_to 'Refeições', meals_path, class: 'btn btn-primary' %>
-        <%= link_to 'Categorias', categories_path, class: 'btn btn-primary' %>
+        <%= link_to 'BackOffice', backoffice_path, class: 'btn btn-primary' %>
     </div>
     <br>
     <div class='form-group'>

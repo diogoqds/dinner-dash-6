@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
     before_action :is_admin?
 
     def index
-        @categories = Category.all
+        @categories = Category.order(:name)
     end
 
     def new

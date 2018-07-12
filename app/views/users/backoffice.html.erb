@@ -1,0 +1,11 @@
+<head>
+    <meta charset='UTF-8'>
+</head>
+<body>
+    <div class='form-group'>
+        <%= link_to 'Usuários', users_path, class: 'btn btn-primary' %>
+        <%= link_to 'Refeições', meals_path, class: 'btn btn-primary' %>
+        <%= link_to 'Categorias', categories_path, class: 'btn btn-primary' %>
+    </div>
+    <%= link_to 'Voltar', user_path(current_user.id), class: 'btn btn-primary' %>
+</body>
