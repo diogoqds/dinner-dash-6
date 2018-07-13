@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :order_meals
+  resources :orders
+  resources :situations
   root 'home#index'
   devise_for :users
   get '/users', to: 'users#index'
