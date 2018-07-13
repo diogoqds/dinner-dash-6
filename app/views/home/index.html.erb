@@ -1,5 +1,38 @@
 <% if user_signed_in? %>
-    <%= render 'auth_user' %>
+    <%= render 'signed_user' %>
 <% else %>
-    <%= render 'unauth_user' %>
+    <%= render 'unsigned_user' %>
+<% end %>
+
+
+<% @categories = Category.all %>
+<% @categories.each do |category| %>
+    <div class="container">
+        <h3><%= category.name %></h3>
+        <% category.meals.in_groups_of(3, false) do |group| %>
+            <div class='row'>
+                
+                <% group.each do |meal| %>           
+                        
+                        <div class="card w-25">
+                            <% if meal.image.attached? %>
+                            <%= image_tag(meal.image,class:"card-img-top") %>
+                            <% end %>
+                            <div class="card-body">       
+                                <h5 class="card-title"><%= meal.name %></h5>
+                                <h6 class="card-subtitle"><%= meal.description %></h6>
+                                <p class="card-text">R$ <%= number_with_precision(meal.price, :precision => 2) %></p>
+                                <div class="form-group">
+                                    <%= label_tag 'quantity', 'Quantidade', class: 'card-text text-muted'  %>
+                                    <%= number_field_tag 'quantity', '1', min: 1, step: 1, class: 'form-control' %>
+                                </div>
+                                <a href="#" class="btn btn-success">Adicionar ao prato</a>
+                            </div>
+                        </div>
+                        
+                <% end %>
+                              
+            </div>
+        <% end %>
+  </div>
 <% end %>

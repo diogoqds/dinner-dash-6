@@ -13,6 +13,7 @@
  */
 @import "normalize.css";
 @import "bootstrap";
+@import "home.scss";
 /*------------------------------------------------------------------------*/
 /* Definitions for the Amaranth font family, used in the dinnerdash logo */
 @font-face {
@@ -75,6 +76,7 @@ float: left;
     font-size: 48px;
     color: #333333;
     opacity: 85%;
+    display: inline;
 }
 /*------------------------------------------------------------------------*/
 /* landing page */
