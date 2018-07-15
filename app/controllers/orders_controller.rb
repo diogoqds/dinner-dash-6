@@ -36,16 +36,15 @@ class OrdersController < ApplicationController
       OrderMeal.create(order: @order, meal: @meal, quantity: cart[1])
     end
 
-    respond_to do |format|
+    
       if @order.save
-        session[:cart] = []
-        format.html { redirect_to @order, notice: 'Order was successfully created.' }
-        format.json { render :show, status: :created, location: @order }
+        session.delete(:cart)
+        session[:cart] = {}
+        redirect_to orders_path
       else
-        format.html { render :new }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
+        render :new
       end
-    end
+    
   end
 
   # PATCH/PUT /orders/1

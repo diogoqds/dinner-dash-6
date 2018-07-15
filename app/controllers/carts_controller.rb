@@ -10,7 +10,8 @@ class CartsController < ApplicationController
           current_cart[@id] += @quantity
         else
             current_cart[@id] = @quantity
-        end    
+        end 
+        puts session[:cart]
         redirect_to root_path
     end
 
