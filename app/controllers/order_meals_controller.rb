@@ -1,5 +1,6 @@
 class OrderMealsController < ApplicationController
   before_action :set_order_meal, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /order_meals
   # GET /order_meals.json
@@ -25,41 +26,30 @@ class OrderMealsController < ApplicationController
   # POST /order_meals.json
   def create
     @order_meal = OrderMeal.new(order_meal_params)
-
-    respond_to do |format|
-      if @order_meal.save
-        format.html { redirect_to @order_meal, notice: 'Order meal was successfully created.' }
-        format.json { render :show, status: :created, location: @order_meal }
-      else
-        format.html { render :new }
-        format.json { render json: @order_meal.errors, status: :unprocessable_entity }
-      end
+    if order_meal.save
+      redirect_to meals_path
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /order_meals/1
   # PATCH/PUT /order_meals/1.json
   def update
-    respond_to do |format|
-      if @order_meal.update(order_meal_params)
-        format.html { redirect_to @order_meal, notice: 'Order meal was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order_meal }
-      else
-        format.html { render :edit }
-        format.json { render json: @order_meal.errors, status: :unprocessable_entity }
-      end
+    if order_meal.update(order_meal_params)
+      redirect_to meals_path
+    else
+      render :edit
     end
   end
 
   # DELETE /order_meals/1
   # DELETE /order_meals/1.json
   def destroy
-    @order_meal.destroy
-    respond_to do |format|
-      format.html { redirect_to order_meals_url, notice: 'Order meal was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    order_meal.destroy
+    redirect_to meals_path
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

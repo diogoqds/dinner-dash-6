@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'carts/create'
+
+  put '/add', to: 'carts#add_item', as: 'add'
+  put '/remove', to: 'carts#remove_item', as: 'remove'
   resources :order_meals
   resources :orders
   resources :situations

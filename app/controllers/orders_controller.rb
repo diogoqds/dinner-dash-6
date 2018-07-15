@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /orders
   # GET /orders.json
   def index
@@ -24,10 +24,21 @@ class OrdersController < ApplicationController
   # POST /orders
   # POST /orders.json
   def create
-    @order = Order.new(order_params)
+    @order =  Order.new
+    # seta os dados por vez
+    @order.user = current_user
+    @order.situation_id = Situation.first.id
+    @order.price = params[:price].to_f
+    @order.save
+
+    session[:cart].each do |cart|
+      @meal = Meal.find(cart[0])
+      OrderMeal.create(order: @order, meal: @meal, quantity: cart[1])
+    end
 
     respond_to do |format|
       if @order.save
+        session[:cart] = []
         format.html { redirect_to @order, notice: 'Order was successfully created.' }
         format.json { render :show, status: :created, location: @order }
       else

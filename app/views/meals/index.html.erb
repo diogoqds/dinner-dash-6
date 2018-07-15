@@ -25,6 +25,8 @@
             <%= image_tag(meal.image, size: '240x135') %>
             <br>
             <br>
+        <% else %>
+            <%= image_tag('food/espaguete.jpg', size: '240x135') %>
         <% end %>
     <% end %>
     <%= link_to 'Nova Refeição', meals_new_path, class: 'btn btn-primary' %>

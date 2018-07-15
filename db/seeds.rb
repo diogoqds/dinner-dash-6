@@ -15,12 +15,14 @@
 #user.save!
 
 # Usuarios
+User.delete_all
 User.create(display_name: 'Admin', full_name: 'Administrador', password: 'dinnerdash', email: 'admin@admin.com', is_admin: true)
 User.create(display_name: 'Tiago', full_name: 'Tiago Mito', password: 'password123', email: 'tiago@tiago.com', is_admin: false)
 User.create(display_name: 'Diogo', full_name: 'Diogo Mito', password: 'diogomito', email: 'diogo@diogo.com', is_admin: false)
 User.create(display_name: 'User', full_name: 'User Batata', password: '123456', email: 'user@user.com', is_admin: false)
 
 # Categorias
+Category.delete_all
 Category.create(name: 'Massas') #1
 Category.create(name: 'Molhos') #2
 Category.create(name: 'Acompanhamentos') #3
@@ -29,6 +31,7 @@ Category.create(name: 'Vegetariano') #5
 Category.create(name: 'Saladas') #6
 
 # Pratos
+Meal.delete_all
 # Massas
 Meal.create(name: 'Espaguete', category_id: 1, description: 'Um delicioso Espaguete!', price: 3.50, available: true)
 Meal.create(name: 'Nhoque', category_id: 1, description: 'Aquele Nhoque que faz você querer mais!', price: 4.50, available: true)
@@ -58,3 +61,10 @@ Meal.create(name: 'Almondegas de soja', category_id: 5, description: 'Bolinhas d
 Meal.create(name: 'Salada de folhas', category_id: 6, description: 'Um mix de folhas', price: 2.00, available: true)
 Meal.create(name: 'Vinagrete', category_id: 6, description: 'Vinagretezinho da galera', price: 2.00, available: true)
 Meal.create(name: 'Fattoush', category_id: 6, description: 'Salada árabe', price: 2.00, available: true)
+
+# Situações
+Situation.delete_all
+Situation.create(description: 'Pago')
+Situation.create(description: 'Em andamento')
+Situation.create(description: 'Confirmado')
+Situation.create(description: 'Cancelado')
