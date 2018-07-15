@@ -4,12 +4,14 @@
 <% if user_signed_in? %>
     <% if current_user.is_admin? %>
       <!-- view do admin -->
-      <%= link_to 'Edit', edit_order_path(order) %>
-      <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%= link_to 'Show', order %>
-        <%= link_to 'New Order', new_order_path %>
-        <% @orders.each do |order| %>
-        <% end %>
+      <% @orders.each do |order| %>
+        <h5>Pedido número: #<%= order.id %></h5>
+        <%= link_to 'Edit Order', edit_order_path(order), class: 'btn btn-primary btn-sm' %>
+        <%= link_to 'Edit Meals', helper_path(order.id), class: 'btn btn-primary btn-sm' %>
+        <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-primary btn-sm' %>
+        <%= link_to 'Show', order, class: 'btn btn-primary btn-sm' %>
+        <%= link_to 'New Order', new_order_path, class: 'btn btn-primary btn-sm' %>
+      <% end %>
     <% else %>
       <!-- view do user padrao logado -->
       <%= link_to 'Voltar para Meus Dados', user_path(current_user.id) %>
@@ -29,8 +31,3 @@
 <!-- view do user nao logado -->
 
 <% end %>
-
-
-
-
-

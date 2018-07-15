@@ -26,8 +26,8 @@ class OrderMealsController < ApplicationController
   # POST /order_meals.json
   def create
     @order_meal = OrderMeal.new(order_meal_params)
-    if order_meal.save
-      redirect_to meals_path
+    if @order_meal.save
+      redirect_to order_meal_path(@order_meal.id)
     else
       render :new
     end
@@ -36,8 +36,8 @@ class OrderMealsController < ApplicationController
   # PATCH/PUT /order_meals/1
   # PATCH/PUT /order_meals/1.json
   def update
-    if order_meal.update(order_meal_params)
-      redirect_to meals_path
+    if @order_meal.update(order_meal_params)
+      redirect_to order_meal_path(@order_meal.id)
     else
       render :edit
     end
@@ -46,8 +46,8 @@ class OrderMealsController < ApplicationController
   # DELETE /order_meals/1
   # DELETE /order_meals/1.json
   def destroy
-    order_meal.destroy
-    redirect_to meals_path
+    @order_meal.destroy
+    redirect_to helper_path(@order_meal.order_id)
   end
 
 

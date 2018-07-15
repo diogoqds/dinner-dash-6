@@ -13,17 +13,17 @@
 
   <div class="field">
     <%= form.label :price %>
-    <%= form.text_field :price %>
+    <%= form.text_field :price, readonly: true %>
   </div>
 
   <div class="field">
     <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
+    <%= form.select :user_id, User.all.collect {|s| [s.display_name, s.id]} %>
   </div>
 
   <div class="field">
     <%= form.label :situation_id %>
-    <%= form.text_field :situation_id %>
+    <%= form.select :situation_id, Situation.all.collect {|s| [s.description, s.id]} %>
   </div>
 
   <div class="actions">

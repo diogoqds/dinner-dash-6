@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   put '/remove', to: 'carts#remove_item', as: 'remove'
   resources :order_meals
   resources :orders
+  get '/orders/:id/meals', to: 'orders#edit_order_meal', as: 'helper'
+  delete '/orders/:id/meals', to: 'order_meals#destroy', as: 'destroy_helper'
+  get '/orders/:id/meals/new', to: 'order_meals#new', as: 'new_helper'
   resources :situations
   root 'home#index'
   devise_for :users

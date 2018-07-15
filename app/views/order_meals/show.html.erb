@@ -7,13 +7,13 @@
 
 <p>
   <strong>Order:</strong>
-  <%= @order_meal.order %>
+  <%= @order_meal.order.id %>
 </p>
 
 <p>
   <strong>Meal:</strong>
-  <%= @order_meal.meal %>
+  <%= @order_meal.meal.name %>
 </p>
 
 <%= link_to 'Edit', edit_order_meal_path(@order_meal) %> |
-<%= link_to 'Back', order_meals_path %>
+<%= link_to 'Back', helper_path(@order_meal.order_id) %>

@@ -1,0 +1,21 @@
+<p>
+<strong>Refeições:</strong>
+<% @order.order_meals.order(:id).each do |om| %>
+    <p>
+    Nome: <%= Meal.find(om.meal_id).name %><br>
+    Quantidade: <%= om.quantity %><br>
+    Preço: <%= Meal.find(om.meal_id).price %><br>
+    Descrição: <%= Meal.find(om.meal_id).description %><br>
+    <% if Meal.find(om.meal_id).image.attached? %>
+        <%= image_tag(Meal.find(om.meal_id).image, size: '240x135') %>
+    <% else %>
+        <%= image_tag('food/espaguete.jpg', size: '240x135') %>
+    <% end %>
+        <%= link_to 'Ver', order_meal_path(om.id), class: 'btn btn-outline-primary btn-sm' %>
+        <%= link_to 'Editar', edit_order_meal_path(om.id), class: 'btn btn-outline-primary btn-sm' %>
+        <%= link_to 'Excluir', destroy_helper_path(om.id), method: 'delete', class: 'btn btn-outline-primary btn-sm' %>
+    </p>
+<% end %>
+</p>
+<%= link_to 'Adicionar Refeição', new_helper_path(@order.id), class: 'btn btn-primary' %>
+<%= link_to 'Voltar', orders_path, class: 'btn btn-primary' %>
