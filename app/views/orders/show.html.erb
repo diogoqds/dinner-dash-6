@@ -7,12 +7,29 @@
 
 <p>
   <strong>User:</strong>
-  <%= @order.user %>
+  <%= @order.user.display_name %>
 </p>
 
 <p>
   <strong>Situation:</strong>
-  <%= @order.situation %>
+  <%= @order.situation.description %>
+</p>
+
+<p>
+  <strong>Refeições:</strong>
+  <% @order.order_meals.each do |m| %>
+    <p>
+      Nome: <%= Meal.find(m.meal_id).name %><br>
+      Quantidade: <%= m.quantity %><br>
+      Preço: <%= Meal.find(m.meal_id).price %><br>
+      Descrição: <%= Meal.find(m.meal_id).description %><br>
+      <% if Meal.find(m.meal_id).image.attached? %>
+        <%= image_tag(Meal.find(m.meal_id).image, size: '240x135') %>
+      <% else %>
+        <%= image_tag('food/espaguete.jpg', size: '240x135') %>
+      <% end %>
+    </p>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_order_path(@order) %> |

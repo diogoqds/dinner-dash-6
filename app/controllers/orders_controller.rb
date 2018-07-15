@@ -1,10 +1,12 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :update_price, only: [:show, :edit]
+
   # GET /orders
   # GET /orders.json
   def index
-    @orders = Order.all
+    @orders = Order.order(:id)
   end
 
   # GET /orders/1
@@ -36,7 +38,7 @@ class OrdersController < ApplicationController
       OrderMeal.create(order: @order, meal: @meal, quantity: cart[1])
     end
 
-    
+
       if @order.save
         session.delete(:cart)
         session[:cart] = {}
@@ -44,7 +46,7 @@ class OrdersController < ApplicationController
       else
         render :new
       end
-    
+
   end
 
   # PATCH/PUT /orders/1
@@ -71,14 +73,27 @@ class OrdersController < ApplicationController
     end
   end
 
+  def edit_order_meal
+    @order = Order.find(params[:id])
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
     end
 
+    def update_price
+      @order.price = 0
+      @order.order_meals.each do |om|
+        @order.price += Meal.find(om.meal_id).price * om.quantity
+      end
+      @order.save
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
       params.require(:order).permit(:price, :user_id, :situation_id)
     end
+
 end
