@@ -1,5 +1,96 @@
 <% if user_signed_in? %>
-    <%= render 'auth_user' %>
+<%= render 'signed_user' %>
 <% else %>
-    <%= render 'unauth_user' %>
+<%= render 'unsigned_user' %>
 <% end %>
+
+<div class="container w-75">
+<!-- pratos -->
+<% @categories = Category.all %>
+<% @categories.each do |category| %>
+    <div class="container">
+        <h3><%= category.name %></h3>
+        <% category.meals.in_groups_of(3, false) do |group| %>
+            <div class='row'>
+                
+                <% group.each do |meal| %>           
+                        
+                        <div class="card w-25">
+                            <% if meal.image.attached? %>
+                                <%= image_tag(meal.image,class:"card-img-top") %>
+                            <% else %>
+                                <%= image_tag('food/espaguete.jpg', class:"card-img-top") %>
+                            <% end %>
+                            <div class="card-body">       
+                                <h5 class="card-title"><%= meal.name %></h5>
+                                <h6 class="card-subtitle"><%= meal.description %></h6>
+                                <p class="card-text">R$ <%= number_with_precision(meal.price, :precision => 2) %></p>
+                                <div class="form-group">
+                                    <%= label_tag 'quantity', 'Quantidade', class: 'card-text text-muted'  %>
+                                    <%= number_field_tag 'quantity', '1', min: 1, step: 1, class: 'form-control' %>
+                                </div>
+                                <% if meal.available %>
+                                <%= button_to 'adicionar ao prato', add_path(id: meal.id.to_i, quantity: 1), method: :put,class: "btn btn-success" %>
+                                <% else %>
+                                <button type="button" class="btn btn-danger disabled">Indisponível</button>
+                                <% end %>
+                            </div>
+                        </div>
+                        
+                <% end %>
+                              
+            </div>
+        <% end %>
+  </div>
+<% end %>
+
+<!-- Carrinho -->
+
+<h2>Finalizou o seu prato? </h2>
+<p>Confira os itens pedidos antes de finalizar o pedido</p>
+<% total = 0.00 %>
+<!--<% session[:cart] ||= {} %> -->
+<% carrinho = session[:cart]%>
+
+<% @meals = Meal.all %>
+<% if carrinho.empty? %>
+<p> Seu carrinho está vazio!!</p>
+<p> Adicione mais itens para poder finalizar seu pedido!</p>
+
+<% else %>
+<div class="d-flex flex-wrap">
+<% carrinho.each do |key, value| %>
+    
+    <p><% me = Meal.find(key.to_i) %></p>
+    <div class="card w-25">
+    <% if me.image.attached? %>
+        <%= image_tag(meal.image,class:"card-img-top") %>
+    <% else %>
+        <%= image_tag('food/espaguete.jpg', class:"card-img-top") %>
+    <% end %>
+        <p><%= me.name %></p>
+        <p>Quantidade: <%= value %></p>
+        <p class="card-text">Valor unid. R$ <%= number_with_precision(me.price, :precision => 2) %></p>
+        <p class="card-text">Valor total R$ <%= number_with_precision(me.price*value, :precision => 2) %></p>
+        <%= button_to 'remover do meu prato', remove_path(id: key.to_i), method: :put,class: "btn btn-danger" %>
+    </div>
+        
+    <% total += me.price*value %>
+<% end %>
+</div>
+<hr>
+
+<p>Preço total do pedido: R$<%= number_with_precision(total, :precision => 2) %></p>
+    
+    <hr>
+    
+    <% if user_signed_in? %>
+    <%= link_to "finalizar e pagar", orders_path(price: total), method: :POST, class: 'btn btn-success' %>
+    <% else %>
+    <p>Para finalizar o seu pedido, entre com sua conta ou faça o seu cadastro.</p>
+    <%= link_to  "entrar com minha conta", new_user_session_path, class: "btn btn-success" %>
+    <%= link_to  "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success" %>
+    <% end %>
+<% end %>
+
+</div>

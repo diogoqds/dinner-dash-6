@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Orders</h1>
+<% if user_signed_in? %>
+    <% if current_user.is_admin? %>
+      <!-- view do admin -->
+      <%= link_to 'Edit', edit_order_path(order) %>
+      <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <%= link_to 'Show', order %>
+        <%= link_to 'New Order', new_order_path %>
+        <% @orders.each do |order| %>
+        <% end %>
+    <% else %>
+      <!-- view do user padrao logado -->
+      <%= link_to 'Voltar para Meus Dados', user_path(current_user.id) %>
+      <% @orders.where(user_id: current_user.id).each do |ord| %>
+        <div class="card">
+            <p>id: <%= ord.id %><p>
+            <p>Preço total do pedido: R$<%= number_with_precision(ord.price, :precision => 2) %></p>
+            <p>Situação: <%= ord.situation.description %><p>
+            <p>Conteúdo: </p>
+            <% ord.meals.each do |me| %>
+              <p><%= me.name  %> </p>
+            <% end %>
+        </div>
+      <% end %>
+    <% end %>
+<% else %>
+<!-- view do user nao logado -->
+
+<% end %>
+
+
+
+
+

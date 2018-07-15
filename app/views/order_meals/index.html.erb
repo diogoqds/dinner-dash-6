@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+<h1>Order Meals</h1>
+
+<% if user_signed_in? %>
+  <% if current_user.is_admin? %>
+    <!-- view do admin -->
+
+    <% @order_meals.each do |order_meal| %>
+          
+            <%= order_meal.quantity %>
+            <%= order_meal.order %>
+            <%= order_meal.meal %>
+            <%= link_to 'Show', order_meal %>
+            <%= link_to 'Edit', edit_order_meal_path(order_meal) %>
+            <%= link_to 'Destroy', order_meal, method: :delete, data: { confirm: 'Are you sure?' } %>
+          
+        <% end %>
+  <% else %>
+  <!-- view do usuario padrao logado -->
+      <% session[:omeals] = [] %>
+      <% session[:cart].each do |f| %>
+        
+        <p><% me = Meal.find(f[0]) %></p>
+        
+            <%= me.name %>
+            <%= f[1] %>>
+            <%= number_with_precision(me.price, :precision => 2) %>
+            <%= number_with_precision(me.price*f[1], :precision => 2) %>
+    
+            
+        <% @omeal = OrderMeal.new(quantity: f[1], :order_id: 0, :user_id: current_user.id) %>
+        <%session[:omeals].push(@omeal.id) %>
+      <% end %>
+      <!--<% redirect_to orders_path %>-->
+  <% end %>
+<% else %>
+  <!-- view do usuario nao logado -->
+ <% redirect_to new_user_registration_path %>
+<% end %>
+
+  
+   
+  
+
+<br>
+
+<%= link_to 'New Order Meal', new_order_meal_path %>

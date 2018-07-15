@@ -12,6 +12,7 @@
     <p><%= current_user.email %></p>
     <br>
     <div class='form-group'>
+        <%= link_to 'Meus pedidos', orders_path, class: 'btn btn-primary' %>
         <%= link_to 'Editar', edit_user_path, class: 'btn btn-primary' %>
         <%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
         <%= link_to 'Sair', destroy_user_session_path, method: 'delete', class: 'btn btn-primary' %>
