@@ -51,11 +51,13 @@
 <% total = 0.00 %>
 <!--<% session[:cart] ||= {} %> -->
 <% carrinho = session[:cart]%>
-<p><%= carrinho %></p>
-
 
 <% @meals = Meal.all %>
-<p><%= carrinho %></p>
+<% if carrinho.empty? %>
+<p> Seu carrinho está vazio!!</p>
+<p> Adicione mais itens para poder finalizar seu pedido!</p>
+
+<% else %>
 <div class="d-flex flex-wrap">
 <% carrinho.each do |key, value| %>
     
@@ -89,5 +91,6 @@
     <%= link_to  "entrar com minha conta", new_user_session_path, class: "btn btn-success" %>
     <%= link_to  "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success" %>
     <% end %>
+<% end %>
 
 </div>
