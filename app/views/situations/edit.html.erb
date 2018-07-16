@@ -1,6 +1,9 @@
-<h1>Editing Situation</h1>
+<div class="backoffice_background">
+        <%= render partial: "layouts/backoffice_header" %>
+      </div>
+      <%= render partial: "layouts/backoffice_navbar" %>
 
 <%= render 'form', situation: @situation %>
 
 <%= link_to 'Show', @situation %> |
-<%= link_to 'Back', situations_path %>
+

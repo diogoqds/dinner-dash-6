@@ -2,6 +2,10 @@
     <meta charset='UTF-8'>
 </head>
 <body>
+<div class="backoffice_background">
+        <%= render partial: "layouts/backoffice_header" %>
+      </div>
+      <%= render partial: "layouts/backoffice_navbar" %>
     <div style='padding-left: 17%; padding-right: 17%;'>
         <h1>Nova Categoria</h1>
         <%= form_for @category do |f| %>
