@@ -1,29 +1,70 @@
-<p id="notice"><%= notice %></p>
-
-<h1>Orders</h1>
 <% if user_signed_in? %>
     <% if current_user.is_admin? %>
       <!-- view do admin -->
-      <%= link_to 'Edit', edit_order_path(order) %>
-      <%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <%= link_to 'Show', order %>
-        <%= link_to 'New Order', new_order_path %>
+      <div class="backoffice_background">
+        <%= render partial: "layouts/backoffice_header" %>
+      </div>
+      <%= render partial: "layouts/backoffice_navbar" %>
+      <table>
+      <thead>
+        <tr>
+          <th>N&ordm; do pedido</th>
+          <th>Usuário</th>
+          <th>Data do pedido</th>
+          <th>Situação do pedido</th>
+          <th>Valor</th>
+          <th>Itens</th>
+          <th>Editar</th>
+          <th>Excluir</th>
+        </tr>
+      </thead>
+      <tbody>
         <% @orders.each do |order| %>
+        <tr>
+          <td><p><%= order.id %></p></td>
+          <td><p><%= order.user.display_name  %></p></td>
+          <td><p><%= order.created_at.strftime("%d-%m-%Y")  %></p></td>
+          <td><p><%= order.situation.description  %></p></td>
+          <td><p>R$<%= number_with_precision(order.price, :precision => 2)  %></p></td>
+          <td><%= link_to 'Show', order %></td>
+          <td><%= link_to 'Edit', edit_order_path(order) %></td>
+          <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
         <% end %>
-    <% else %>
-      <!-- view do user padrao logado -->
-      <%= link_to 'Voltar para Meus Dados', user_path(current_user.id) %>
+      </tbody>
+      </table>
+    <% else %><!-- view do user padrao logado -->
+      <div class="landing_background">
+    <%= render partial: "header" %>
+    </div>
+    <div class="container w-75">
+    <table class="table orders_table">
+      <thead>
+      <tr>
+        <th>N&ordm; do pedido</th>
+        <th>Data do pedido</th>
+        <th>Valor</th>
+        <th>Situação</th>
+        <th>Itens</th>
+      </tr>
+      </thead>
+      <tbody>
       <% @orders.where(user_id: current_user.id).each do |ord| %>
-        <div class="card">
-            <p>id: <%= ord.id %><p>
-            <p>Preço total do pedido: R$<%= number_with_precision(ord.price, :precision => 2) %></p>
-            <p>Situação: <%= ord.situation.description %><p>
-            <p>Conteúdo: </p>
+        <tr>
+            <td><p><%= ord.id %><p></td>
+            <td><p><%= ord.created_at.strftime("%d-%m-%Y") %><p></td>
+            <td><p>R$<%= number_with_precision(ord.price, :precision => 2) %></p></td>
+            <td><p><%= ord.situation.description %><p></td>
+            <td>
             <% ord.meals.each do |me| %>
-              <p><%= me.name  %> </p>
+              <p><%= me.name %> </p>
             <% end %>
-        </div>
+            </td>
+        </tr>
       <% end %>
+      </tbody>
+    </table>
+    </div>
     <% end %>
 <% else %>
 <!-- view do user nao logado -->

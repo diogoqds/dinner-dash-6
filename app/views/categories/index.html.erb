@@ -2,6 +2,12 @@
     <meta charset='UTF-8'>
 </head>
 <body>
+    <% if user_signed_in? %>
+    <% if current_user.is_admin? %>
+      <div class="backoffice_background">
+        <%= render partial: "layouts/backoffice_header" %>
+      </div>
+      <%= render partial: "layouts/backoffice_navbar" %>
     <h1> Categorias </h1>
     <% @categories.each do |category| %>
         <h3 style='display: inline;'><%= category.name %></h3>
@@ -12,4 +18,6 @@
     <br>
     <%= link_to 'Nova Categoria', categories_new_path, class: 'btn btn-primary' %>
     <%= link_to 'Voltar', backoffice_path, class: 'btn btn-primary' %>
+    <% end  %>
+    <% end  %>
 </body>

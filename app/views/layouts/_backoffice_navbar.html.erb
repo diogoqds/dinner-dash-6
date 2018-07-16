@@ -1,0 +1,24 @@
+<div class="container-fluid bg-dark">
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+      <%= link_to "Pedidos", orders_path, class: "nav-link text-muted" if !current_page?('/orders')%>
+      <%= link_to "Pedidos", orders_path, class: "nav-link active" if current_page?('/orders')%>
+      </li>
+      <li class="nav-item text-muted">
+      <%= link_to "Usuários", users_path, class: "nav-link text-muted" if !current_page?('/users')%>
+      <%= link_to "Usuários", users_path, class: "nav-link active" if current_page?('/users')%>
+      </li>
+      <li class="nav-item text-muted">
+      <%= link_to "Refeições", meals_path, class: "nav-link text-muted" if !current_page?('/meals')%>
+      <%= link_to "Refeições", meals_path, class: "nav-link active" if current_page?('/meals')%>
+      </li>
+      <li class="nav-item text-muted">
+      <%= link_to "Categorias de Refeições", categories_path, class: "nav-link text-muted" if !current_page?('/categories') %>
+      <%= link_to "Categorias de Refeições", categories_path, class: "nav-link active" if current_page?('/categories')%>
+      </li>
+      <li class="nav-item text-muted">
+      <%= link_to "Situações de Pedidos", situations_path, class: "nav-link text-muted" if !current_page?('/situations') %>
+      <%= link_to "SItuações de Pedidos", situations_path, class: "nav-link active" if current_page?('/situations')%>
+      </li>
+    </ul>
+  </div>

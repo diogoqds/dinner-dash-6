@@ -2,6 +2,12 @@
     <meta charset='UTF-8'>
 </head>
 <body>
+    <% if user_signed_in? %>
+    <% if current_user.is_admin? %>
+      <div class="backoffice_background">
+        <%= render partial: "layouts/backoffice_header" %>
+      </div>
+      <%= render partial: "layouts/backoffice_navbar" %>
     <h1> Refeições </h1>
     <% @meals.each do |meal| %>
         <h3 style='display: inline;'><%= meal.name %></h3>
@@ -31,4 +37,6 @@
     <% end %>
     <%= link_to 'Nova Refeição', meals_new_path, class: 'btn btn-primary' %>
     <%= link_to 'Voltar', backoffice_path, class: 'btn btn-primary' %>
+    <% end %>
+    <% end %>
 </body>

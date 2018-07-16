@@ -78,8 +78,55 @@ float: left;
     opacity: 85%;
     display: inline;
 }
+.dinnerdash_button{
+    font-family: 'Amaranth';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 48px;
+    color: white;
+    opacity: 1;
+}
 /*------------------------------------------------------------------------*/
 /* landing page */
 #landing_choice{
     text-align: center;
+}
+.landing_background{
+    background:linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4) ), url('/assets/jay-wennington-2065.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-color:lightyellow;
+    height:50%;
+    width:100%;
+
+}
+.backoffice_background{
+    background:linear-gradient( rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.4) ), url('helloquence-61189.jpg');
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-color:lightyellow;
+    height:50%;
+    width:100%;
+
+}
+
+
+.dinner_nav{
+    padding: 1em;
+    top: 0px; 
+    left: 0; 
+    width: 100%;
+}
+
+.orders_table{
+    margin: 1em;
+    width: 100%;
+}
+
+.orders_table th{
+    width: 20em;
 }

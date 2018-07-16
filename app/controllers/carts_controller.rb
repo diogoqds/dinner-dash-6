@@ -11,7 +11,6 @@ class CartsController < ApplicationController
         else
             current_cart[@id] = @quantity
         end 
-        puts session[:cart]
         redirect_to root_path
     end
 
