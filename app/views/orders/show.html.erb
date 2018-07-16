@@ -1,19 +1,42 @@
-<p id="notice"><%= notice %></p>
+<div class="landing_background">
+    <%= render partial: "header" %>
+    </div>
 
+<%= link_to 'Back', orders_path %>
 <p>
   <strong>Price:</strong>
-  <%= @order.price %>
+  R$<%= number_with_precision(@order.price, :precision => 2) %>
 </p>
 
 <p>
   <strong>User:</strong>
-  <%= @order.user %>
+  <%= @order.user.display_name %>
 </p>
 
 <p>
   <strong>Situation:</strong>
-  <%= @order.situation %>
+  <%= @order.situation.description %>
 </p>
 
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th>Refeição</th>
+      <th>Valor unitário</th>
+      <th>Quantidade</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @order.order_meals.each do |ome|  %>
+  <tr>
+    <td><%= ome.meal.name %></td>
+    <td>R$<%= number_with_precision(ome.meal.price, :precision => 2) %></td>
+    <td><%= ome.quantity %></td>
+    <td>R$<%= number_with_precision(ome.meal.price * ome.quantity, :precision => 2) %></td>
+  </tr>
+  <% end  %>
+  </tbody>
+</table>
+
+

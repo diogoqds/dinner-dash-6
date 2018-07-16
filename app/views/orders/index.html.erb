@@ -5,8 +5,9 @@
         <%= render partial: "layouts/backoffice_header" %>
       </div>
       <%= render partial: "layouts/backoffice_navbar" %>
+      <div class="container w-75 bg-light border border-light">
       <table class="table">
-      <thead>
+      <thead class="thead-light">
         <tr>
           <th>N&ordm; do pedido</th>
           <th>Usuário</th>
@@ -26,18 +27,19 @@
           <td><p><%= order.created_at.strftime("%d-%m-%Y")  %></p></td>
           <td><p><%= order.situation.description  %></p></td>
           <td><p>R$<%= number_with_precision(order.price, :precision => 2)  %></p></td>
-          <td><%= link_to 'Show', order %></td>
-          <td><%= link_to 'Edit', edit_order_path(order) %></td>
-          <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', order , class: "btn btn-primary" %></td>
+          <td><%= link_to 'Edit', edit_order_path(order), class: "btn btn-warning" %></td>
+          <td><%= link_to 'Destroy', order, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
         </tr>
         <% end %>
       </tbody>
       </table>
+      </div>
     <% else %><!-- view do user padrao logado -->
       <div class="landing_background">
     <%= render partial: "header" %>
     </div>
-    <div class="container w-75">
+    <div class="container w-75 bg-light border border-light">
     <table class="table orders_table">
       <thead class="thead-light">
       <tr>
@@ -46,6 +48,7 @@
         <th>Valor</th>
         <th>Situação</th>
         <th>Itens</th>
+        <th>Editar</th>
       </tr>
       </thead>
       <tbody>
@@ -56,9 +59,10 @@
             <td><p>R$<%= number_with_precision(ord.price, :precision => 2) %></p></td>
             <td><p><%= ord.situation.description %><p></td>
             <td>
-            <% ord.meals.each do |me| %>
-              <p><%= me.name %> </p>
-            <% end %>
+            <%= link_to 'Ver itens', order_path(id: ord.id), method: :get ,class: 'btn btn-primary' %>
+            </td>
+            <td>
+            <%= link_to 'Editar', edit_order_path(id: ord.id), method: :get ,class: 'btn btn-warning' %>
             </td>
         </tr>
       <% end %>
@@ -70,6 +74,7 @@
 <!-- view do user nao logado -->
 
 <% end %>
+
 
 
 

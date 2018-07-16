@@ -7,15 +7,4 @@
         <%= render partial: "layouts/backoffice_header" %>
       </div>
       <%= render partial: "layouts/backoffice_navbar" %>
-
-    <div class='form-group'>
-        <%= link_to 'Usuários', users_path, class: 'btn btn-primary' %>
-        <%= link_to 'Pedidos', orders_path, class: 'btn btn-primary' %>
-        <%= link_to 'Refeições', meals_path, class: 'btn btn-primary' %>
-        <%= link_to 'Categorias', categories_path, class: 'btn btn-primary' %>
-    </div>
-    <div class='form-group'>
-        <%= link_to 'Meus Dados', user_path(current_user.id), class: 'btn btn-primary' %>
-        <%= link_to 'Sair', destroy_user_session_path, method: 'delete', class: 'btn btn-primary' %>
-    </div>
 </body>

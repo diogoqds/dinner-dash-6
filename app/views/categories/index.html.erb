@@ -8,16 +8,27 @@
         <%= render partial: "layouts/backoffice_header" %>
       </div>
       <%= render partial: "layouts/backoffice_navbar" %>
-    <h1> Categorias </h1>
-    <% @categories.each do |category| %>
-        <h3 style='display: inline;'><%= category.name %></h3>
-        <%= link_to 'Editar', edit_category_path(category.id), class: 'btn btn-outline-primary btn-sm' %>
-        <%= link_to 'Excluir', destroy_category_path(category.id), method: 'delete', class: 'btn btn-outline-primary btn-sm' %>
-        <br>
-    <% end %>
-    <br>
     <%= link_to 'Nova Categoria', categories_new_path, class: 'btn btn-primary' %>
-    <%= link_to 'Voltar', backoffice_path, class: 'btn btn-primary' %>
+    <div class="container w-75 bg-light border border-light">
+    <table class="table">
+        <thead class="thead-light">
+            <tr>
+                <th>Nome</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    <% @categories.each do |category| %>
+        <tr>
+           <td> <h3 style='display: inline;'><%= category.name %></h3></td>
+            <td><%= link_to 'Editar', edit_category_path(category.id), class: 'btn btn-warning' %></td>
+           <td> <%= link_to 'Excluir', destroy_category_path(category.id), method: 'delete', class: 'btn btn-danger' %></td>
+        <tr>
+    <% end %>
+        </tbody>
+    </table>     
+    </div>
     <% end  %>
     <% end  %>
 </body>

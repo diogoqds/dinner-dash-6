@@ -18,9 +18,9 @@
     <p><% me = Meal.find(key.to_i) %></p>
     <div class="card w-25">
     <% if me.image.attached? %>
-        <%= image_tag(me.image,class:"card-img-top") %>
+        <%= image_tag(me.image,class:"card-img-top",height: '200') %>
     <% else %>
-        <%= image_tag('food/espaguete.jpg', class:"card-img-top") %>
+        <%= image_tag('food/espaguete.jpg', class:"card-img-top",height: '200') %>
     <% end %>
         <p><%= me.name %></p>
         <p>Quantidade: <%= value %></p>

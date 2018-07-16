@@ -127,17 +127,26 @@ float: left;
     width: 100%;
 }
 
-.orders_table th{
-    width: 20em;
-}
 
 .container_card {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex-flow: row wrap; 
+  align-items: baseline;
+}
+.my_flex {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
   flex-flow: row wrap; 
   align-items: baseline;
 }
 .container_card .card {
   display: block;
   flex-basis: 25%; /* change this value for each breakpoint*/
+}
+
+.w-30{
+    width: 30%;
 }

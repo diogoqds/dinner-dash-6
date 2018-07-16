@@ -6,17 +6,22 @@
         <%= render partial: "layouts/backoffice_header" %>
       </div>
       <%= render partial: "layouts/backoffice_navbar" %>
-    <h1> Usuários </h1>
+      <div class="container w-75 bg-light border border-light">
+    <table class="table">
+        <thead class="thead-light">
+            <th>Nome Social</th>
+            <th>Nome Completo</th>
+            <th>e-mail</th>
+        </thead>
+        <tbody>
     <% @users.each do |user| %>
-        <h5>
-            <b>Nome Social:</b> <%= user.display_name %>
-            <br>
-            <b>Nome de Registro:</b> <%= user.full_name %>
-            <br>
-            <b>Email:</b> <%= user.email %>
-            <br>
-        </h5>
-        <br>
+        <tr>
+            <td><%= user.display_name %></td>  
+            <td><%= user.full_name %></td>
+            <td><%= user.email %></td>   
+        </tr>
     <% end %>
-    <%= link_to 'Voltar', backoffice_path, class: 'btn btn-primary' %>
+        </tbody>
+    </table>
+    </div>
 </body>

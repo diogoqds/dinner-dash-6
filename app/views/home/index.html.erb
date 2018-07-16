@@ -6,22 +6,22 @@
 <%= render 'unsigned_user' %>
 <% end %>
 </div>
-<div class="container w-75">
+<div class="container w-75 bg-light border border-light">
 <!-- pratos -->
 <% @categories = Category.all %>
 <% @categories.each do |category| %>
     <div class="container">
         <h3><%= category.name %></h3>
         <% category.meals.in_groups_of(3, false) do |group| %>
-            <div class='row'>
+            <div class='row my_flex'>
                 
                 <% group.each do |meal| %>           
                         
-                        <div class="card w-25">
+                        <div class="card w-30">
                             <% if meal.image.attached? %>
-                                <%= image_tag(meal.image , class:"card-img-top") %>
+                                <%= image_tag(meal.image , class:"card-img-top",height: '200') %>
                             <% else %>
-                                <%= image_tag('food/espaguete.jpg', class:"card-img-top") %>
+                                <%= image_tag('food/espaguete.jpg', class:"card-img-top", height: '200') %>
                             <% end %>
                             <div class="card-body">       
                                 <h5 class="card-title"><%= meal.name %></h5>
@@ -45,7 +45,8 @@
         <% end %>
   </div>
 <% end %>
-
+<div class="container">
 <%= render partial: "carts/cart" %>
 
+</div>
 </div>

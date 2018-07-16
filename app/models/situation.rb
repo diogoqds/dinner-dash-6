@@ -1,3 +1,4 @@
 class Situation < ApplicationRecord
-    has_many :orders
+    has_many :orders, dependent: :destroy
+     validates_presence_of :description
 end
