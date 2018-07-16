@@ -11,13 +11,21 @@ class CartsController < ApplicationController
         else
             current_cart[@id] = @quantity
         end 
-        redirect_to root_path
+        redirect_back(fallback_location: root_path)
     end
+
+  def update_item
+    @id = params[:id]
+    @quantity = params[:quantity].to_i
+    current_cart[@id] = @quantity
+    
+    redirect_back(fallback_location: root_path)
+  end
 
   def remove_item
     @item = params[:id]
     session[:cart] = current_cart.except(@item)
-    redirect_to root_path
+    redirect_back(fallback_location: root_path)
   end
 
   private

@@ -29,7 +29,10 @@
                                 <p class="card-text">R$ <%= number_with_precision(meal.price, :precision => 2) %></p>
                                 
                                 <% if meal.available %>
-                                <%= button_to 'adicionar +1 ao prato', add_path(id: meal.id.to_i, quantity: 1), method: :put,class: "btn btn-success" %>
+                                <%= form_with url: add_path(id:meal.id.to_i), method: :put do |f| %>
+                                    <%= f.number_field :quantity,{:value => 1,:class => "multiple_text_field form-control", min: 1 } %></br><br>
+                                    <%= f.submit "adicionar ao meu prato", class: "btn btn-success" %>
+                                <% end %>
                                 <% else %>
                                 <button type="button" class="btn btn-danger disabled">Indisponível</button>
                                 <% end %>
@@ -69,12 +72,12 @@
     <% end %>
         <p><%= me.name %></p>
         <p>Quantidade: <%= value %></p>
-        <p class="card-text">Valor unid. R$ <%= number_with_precision(me.price, :precision => 2) %></p>
-        <p class="card-text">Valor total R$ <%= number_with_precision(me.price*value, :precision => 2) %></p>
-        <%= button_to '+1', add_path(id: key.to_i, quantity: 1), method: :put,class: "btn btn-success" %>
-        <% if value > 1 %>
-            <%= button_to '-1', add_path(id: key.to_i, quantity: -1), method: :put,class: "btn btn-success" %>
-        <% end  %>
+        <p>Valor unid.: <%= number_with_precision(me.price, :precision => 2) %></p>
+        <p>Valor total: <%= number_with_precision(me.price * value, :precision => 2) %></p>
+        <%= form_with url: update_path(id:me.id.to_i), method: :put do |f| %>
+            <%= f.number_field :quantity,{:value => value,:class => "multiple_text_field form-control", min: 1 } %></br><br>
+            <%= f.submit "alterar quantidade", class: "btn btn-success" %>
+        <% end %>
         <%= button_to 'remover do meu prato', remove_path(id: key.to_i), method: :put,class: "btn btn-danger" %>
     </div>
         
