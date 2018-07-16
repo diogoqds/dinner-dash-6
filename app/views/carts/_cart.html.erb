@@ -3,26 +3,41 @@
 <h2>Finalizou o seu prato? </h2>
 <p>Confira os itens pedidos antes de finalizar o pedido</p>
 <% total = 0.00 %>
-<% session[:cart] ||= {} %>
+<!--<% session[:cart] ||= {} %> -->
+<% carrinho = session[:cart]%>
+
 <% @meals = Meal.all %>
+<% if carrinho.empty? %>
+<p> Seu carrinho está vazio!!</p>
+<p> Adicione mais itens para poder finalizar seu pedido!</p>
+
+<% else %>
 <div class="d-flex flex-wrap">
-<% session[:cart].each do |f| %>
+<% carrinho.each do |key, value| %>
     
-    <p><% me = Meal.find(f[0]) %></p>
+    <p><% me = Meal.find(key.to_i) %></p>
     <div class="card w-25">
     <% if me.image.attached? %>
-        <%= image_tag(meal.image,class:"card-img-top") %>
+        <%= image_tag(me.image,class:"card-img-top") %>
     <% else %>
         <%= image_tag('food/espaguete.jpg', class:"card-img-top") %>
     <% end %>
         <p><%= me.name %></p>
-        <p>Quantidade: <%= f[1] %></p>
-        <p class="card-text">Valor unid. R$ <%= number_with_precision(me.price, :precision => 2) %></p>
-        <p class="card-text">Valor total R$ <%= number_with_precision(me.price*f[1], :precision => 2) %></p>
-        <%= button_to 'remover do meu prato', remove_path(id: f[0]), method: :put,class: "btn btn-danger" %>
+        <p>Quantidade: <%= value %></p>
+        <p>Valor unid.: <%= number_with_precision(me.price, :precision => 2) %></p>
+        <p>Valor total: <%= number_with_precision(me.price * value, :precision => 2) %></p>
+         <% if current_page?('/')  %>
+            <%= form_with url: update_path(id:me.id.to_i), method: :put do |f| %>
+                <%= f.number_field :quantity,{:value => value,:class => "multiple_text_field form-control", min: 1 } %></br><br>
+                <%= f.submit "alterar quantidade", class: "btn btn-success" %>
+            <% end %>         
+        <% else %>
+            <p> Para editar as quantidades, retorne à página inicial</p>
+        <% end %>
+        <%= button_to 'remover do meu prato', remove_path(id: key.to_i), method: :put,class: "btn btn-danger" %>
     </div>
         
-    <% total += me.price*f[1] %>
+    <% total += me.price*value %>
 <% end %>
 </div>
 <hr>
@@ -30,7 +45,15 @@
 <p>Preço total do pedido: R$<%= number_with_precision(total, :precision => 2) %></p>
     
     <hr>
-    
     <% if user_signed_in? %>
-    <%= link_to "finalizar e pagar", orders_path(price: total), method: :POST, class: 'btn btn-success' %>
+    <% if current_page?('/')  %>
+        <%= link_to "finalizar", carrinho_path, method: :put, class: 'btn btn-success'  %>
     <% else %>
+     <%= link_to "pagar", orders_path(price: total), method: :post, class: 'btn btn-success' %>
+    <% end %>
+    <% else %>
+    <p>Para finalizar o seu pedido, entre com sua conta ou faça o seu cadastro.</p>
+    <%= link_to  "entrar com minha conta", new_user_session_path, class: "btn btn-success" %>
+    <%= link_to  "fazer meu cadastro", new_user_registration_path, class: "btn btn-outline-success" %>
+    <% end %>
+<% end %>

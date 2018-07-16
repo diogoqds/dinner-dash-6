@@ -123,10 +123,21 @@ float: left;
 }
 
 .orders_table{
-    margin: 1em;
+    margin: 0;
     width: 100%;
 }
 
 .orders_table th{
     width: 20em;
+}
+
+.container_card {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap; 
+  align-items: baseline;
+}
+.container_card .card {
+  display: block;
+  flex-basis: 25%; /* change this value for each breakpoint*/
 }

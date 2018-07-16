@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   put '/add', to: 'carts#add_item', as: 'add'
   put '/remove', to: 'carts#remove_item', as: 'remove'
   put '/update', to: 'carts#update_item', as: 'update'
+  put '/carrinho', to: 'carts#show', as: 'carrinho'
   resources :order_meals
   resources :orders
   resources :situations

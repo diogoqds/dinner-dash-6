@@ -5,17 +5,24 @@
     <div class="landing_background">
     <%= render partial: "header" %>
     </div>
-    <h1>Bem vindo, <%= current_user.display_name %>!</h1>
-    <br>
-    <h3>Nome Exibido</h3>
-    <p><%= current_user.display_name %></p>
-    <h3>Nome Completo</h3>
-    <p><%= current_user.full_name %></p>
-    <h3>Email</h3>
-    <p><%= current_user.email %></p>
-    <br>
-    <div class='form-group'>
-        <%= link_to 'Editar', edit_user_path, class: 'btn btn-primary' %>
-        <%= link_to 'Voltar', root_path, class: 'btn btn-primary' %>
+    <div class="container w-75">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th><p>Nome exibido</p></th>
+                <th><p>Nome completo</p></th>
+                <th><p>e-mail</p></th>
+                <th><p>Editar</p></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><p><%= current_user.display_name %></p></td>
+                <td><p><%= current_user.full_name %></p></td>
+                <td><p><%= current_user.email %></p></td>
+                <td><p><%= link_to 'Editar', edit_user_path, class: 'btn btn-primary' %></p></td>
+            </tr>
+        </tbody>
+    </table>
     </div>
 </body>

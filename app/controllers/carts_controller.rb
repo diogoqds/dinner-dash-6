@@ -1,4 +1,8 @@
 class CartsController < ApplicationController
+  
+  def show
+  end
+
   def create
     session[:cart] = {}
   end

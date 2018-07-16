@@ -1,5 +1,39 @@
 <% if user_signed_in? %>
-<% render  "cart" %> 
+ <div class="landing_background">
+    <%= render partial: "header" %>
+ </div>
+<%= render  "cart" %> 
+<hr>
+<h2>Pedidos anteriores</h2>
+
+<div class="container w-75">
+    <table class="table orders_table">
+      <thead>
+      <tr>
+        <th>N&ordm; do pedido</th>
+        <th>Data do pedido</th>
+        <th>Valor</th>
+        <th>Situação</th>
+        <th>Itens</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% Order.where(user_id: current_user.id).each do |ord| %>
+        <tr>
+            <td><p><%= ord.id %><p></td>
+            <td><p><%= ord.created_at.strftime("%d-%m-%Y") %><p></td>
+            <td><p>R$<%= number_with_precision(ord.price, :precision => 2) %></p></td>
+            <td><p><%= ord.situation.description %><p></td>
+            <td>
+            <% ord.meals.each do |me| %>
+              <p><%= me.name %> </p>
+            <% end %>
+            </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    </div>
 <% else %>
 <% redirect_to new_user_registration_path %>
 <% end %>

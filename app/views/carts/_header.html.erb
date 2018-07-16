@@ -1,0 +1,19 @@
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <%= link_to 'DinnerDash', root_path, class: 'dinnerdash_button' %>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse flex-row-reverse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <%= link_to 'Voltar', root_path, class: 'nav-item nav-link text-white'  %>
+          <%= link_to "Sair", destroy_user_session_path, :method => :delete, class: 'nav-item nav-link text-white'  %>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div class="jumbotron text-white bg-transparent">
+      <h1>Finalizar pedido</h1>
+      <h3>Aqui você pode conferir seu pedido uma última vez</h3>  
+  </div>
